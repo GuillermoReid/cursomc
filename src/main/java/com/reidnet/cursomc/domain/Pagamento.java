@@ -11,8 +11,6 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.reidnet.cursomc.domain.enums.EstadoPagamento;
-import com.reidnet.cursomc.domain.enums.TipoCliente;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -22,9 +20,9 @@ public abstract class Pagamento implements Serializable {
 	@Id
 	private Integer id;
 	private Integer estado;
-	
+
 	@OneToOne
-	@JoinColumn(name="pedido_id")
+	@JoinColumn(name = "pedido_id")
 	@MapsId
 	private Pedido pedido;
 
@@ -46,7 +44,6 @@ public abstract class Pagamento implements Serializable {
 		this.id = id;
 	}
 
-	
 	public EstadoPagamento getEstado() {
 		return EstadoPagamento.toEnum(estado);
 	}
@@ -55,12 +52,6 @@ public abstract class Pagamento implements Serializable {
 		this.estado = estado.getCod();
 	}
 
-	
-	
-	
-	
-	
-	
 	public Pedido getPedido() {
 		return pedido;
 	}
