@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.reidnet.cursomc.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
-public class ResourceExcepiontsHandler {
+public class ResourceExceptionsHandler {
 
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
