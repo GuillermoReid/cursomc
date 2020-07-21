@@ -96,11 +96,11 @@ public class Cliente  implements Serializable{
 		this.tipo = tipo.getCod();
 	}
 
-	public List<Endereco> getEndereco() {
+	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEndereco(List<Endereco> enderecos) {
+	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
