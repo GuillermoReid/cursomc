@@ -3,6 +3,8 @@ package com.reidnet.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -35,7 +37,7 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 
 
-	
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		repo.save(obj);
@@ -68,7 +70,7 @@ public class ClienteService {
 		try {
 			repo.deleteById(obj.getId());
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possivel excluir porque existem entidades relacionadas");
+			throw new DataIntegrityException("Não é possivel excluir porque existem pedidos relacionados");
 		}
 	}
 
