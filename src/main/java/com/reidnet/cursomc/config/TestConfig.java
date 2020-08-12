@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 import com.reidnet.cursomc.services.DbService;
 import com.reidnet.cursomc.services.EmailService;
 import com.reidnet.cursomc.services.MockMailService;
-import com.reidnet.cursomc.services.SmtpEmailService;
 
 @Configuration
 @Profile("test")
