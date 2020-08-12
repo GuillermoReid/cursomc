@@ -16,12 +16,15 @@ import org.springframework.stereotype.Service;
 import com.reidnet.cursomc.domain.Cidade;
 import com.reidnet.cursomc.domain.Cliente;
 import com.reidnet.cursomc.domain.Endereco;
+import com.reidnet.cursomc.domain.enums.Perfil;
 import com.reidnet.cursomc.domain.enums.TipoCliente;
 import com.reidnet.cursomc.dto.ClienteDTO;
 import com.reidnet.cursomc.dto.ClienteNewDTO;
 import com.reidnet.cursomc.repositories.CidadeRepository;
 import com.reidnet.cursomc.repositories.ClienteRepository;
 import com.reidnet.cursomc.repositories.EnderecoRepository;
+import com.reidnet.cursomc.security.UserSS;
+import com.reidnet.cursomc.services.exceptions.AuthorizationException;
 import com.reidnet.cursomc.services.exceptions.DataIntegrityException;
 import com.reidnet.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -51,6 +54,21 @@ public class ClienteService {
 	
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.autenticated();
+		if(user != null) { 
+			System.out.println("*************************");
+			System.out.println("Usuario é Admin:" + user.hasRole(Perfil.ADMIN));
+			System.out.println("*************************");
+		}else {
+			System.out.println("*************************");
+			System.out.println("Usuario nao logado");
+			System.out.println("*************************");
+		}
+		
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Aceso Negado.");
+		}
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));

@@ -15,7 +15,7 @@ public class UserSS implements UserDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String email;
 	private String senha;
@@ -32,6 +32,10 @@ public class UserSS implements UserDetails {
 		this.senha = senha;
 		this.authorities = perfis.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao()))
 				.collect(Collectors.toList());
+	}
+
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
 	}
 
 	public Integer getId() {
