@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.reidnet.cursomc.domain.Categoria;
 import com.reidnet.cursomc.domain.Pedido;
-import com.reidnet.cursomc.dto.CategoriaDTO;
 import com.reidnet.cursomc.services.PedidoService;
 
 @RestController
@@ -45,7 +43,6 @@ public class PedidoResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	
 	@RequestMapping( method = RequestMethod.GET)
 	public ResponseEntity<Page<Pedido>> findPage(
 			@RequestParam(value="page", defaultValue = "0") Integer page, 

@@ -55,7 +55,7 @@ public class ClienteService {
 	
 	public Cliente find(Integer id) {
 		
-		UserSS user = UserService.autenticated();
+		UserSS user = UserService.authenticated();
 		if(user != null) { 
 			System.out.println("*************************");
 			System.out.println("Usuario é Admin:" + user.hasRole(Perfil.ADMIN));
