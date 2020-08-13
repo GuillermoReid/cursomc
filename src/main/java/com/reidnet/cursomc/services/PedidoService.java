@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.reidnet.cursomc.domain.Categoria;
 import com.reidnet.cursomc.domain.Cliente;
 import com.reidnet.cursomc.domain.ItemPedido;
 import com.reidnet.cursomc.domain.PagamentoComBoleto;

@@ -37,18 +37,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	
 	private static final String[] PUBLIC_MATCHERS = { 
 			"/h2-console/**"
-				 };
+	 		};
 	
 	private static final String[] PUBLIC_MATCHERS_GET = { 
 			"/produtos/**",
-			"/categorias/**" };
+			"/categorias/**" 
+			};
 
-	
 	private static final String[] PUBLIC_MATCHERS_POST = { 
-			"/clientes/**" };
+			"/clientes/**",
+			"/auth/forgot/**"
+			};
 	
 //	Teste para acessar h2-console
 	@Override
@@ -72,7 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
-	
 	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
